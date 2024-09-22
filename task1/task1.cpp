@@ -1,4 +1,3 @@
-//
 //      _                 _                   _   
 //     | |               (_)                 | |  
 //   __| | ___  _ __ ___  _ _ __   __ _ _ __ | |_ 
@@ -11,100 +10,66 @@
 //  / _` |/ _ \  | '_ \ / _ \| __| / __| '_ \ / _` | '__/ _ \
 // | (_| | (_) | | | | | (_) | |_  \__ \ | | | (_| | | |  __/
 //  \__,_|\___/  |_| |_|\___/ \__| |___/_| |_|\__,_|_|  \___|                                                 
-//                                                      _   _                        _   _                
-//                                                     | | | |                      | | | |               
-//   ___  _ __   ___ _ __   ___  _ __  ___  ___  _ __  | |_| |__   ___    __ _ _   _| |_| |__   ___  _ __ 
-//  / _ \| '__| / __| '_ \ / _ \| '_ \/ __|/ _ \| '__| | __| '_ \ / _ \  / _` | | | | __| '_ \ / _ \| '__|
-// | (_) | |    \__ \ |_) | (_) | | | \__ \ (_) | |    | |_| | | |  __/ | (_| | |_| | |_| | | | (_) | |   
-//  \___/|_|    |___/ .__/ \___/|_| |_|___/\___/|_|     \__|_| |_|\___|  \__,_|\__,_|\__|_| |_|\___/|_|   
-//                  | |                                                                                   
-//                  |_|                                                                                   
+//                                                                                  
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <iomanip> /* чтобы избавиться от 1.1e-05 чисел */
 
 using namespace std;
 
-// я не хочу это комментить
-const double PI = 3.14159265358979323846;
+//* Pasted re-code by Eduard
+const double PI = 3.14159; // Число Пи
+const double A = 3.3;  // Амплитуда
+const double f = 10000;  // Частота (10 кГц)
+const double T = 1.0 / f;  // Период
+const int num_points = 100;  // Кол-во точек
+const int harmonics = 100;  // Гармоники для меандра и пилы
 
-// зачем я этим занимаюсь по итогу?
-double calculateSignal(int signalType, double A, double f, double t) {
-    // угловая частота
-    double omega = 2 * PI * f;
-    
-    switch (signalType) {
-        case 1: {
-            // x(t) = A * sin(omega * t)
-            return A * sin(omega * t);
-        }
-        case 2: {
-            // x(t) = (4A / π) * Σ [sin((2k-1)ωt) / (2k-1)]
-            double sum = 0;
-            int terms = 100;  // кол-во гармоник по заданию
-            for (int k = 1; k <= terms; ++k) {
-                sum += sin((2 * k - 1) * omega * t) / (2 * k - 1);
-            }
-            return (4 * A / PI) * sum;
-        }
-        case 3: {
-            // x(t) = (A / π) * Σ [(-1)^k * sin(kωt) / k]
-            double sum = 0;
-            int terms = 100;  // кол-во гармоник по заданию
-            for (int k = 1; k <= terms; ++k) {
-                sum += pow(-1, k) * sin(k * omega * t) / k;
-            }
-            return (A / PI) * sum;
-        }
-        default:
-            cerr << "Ошибка: неверный номер сигнала." << endl;
-            return 0.0;
-    }
+// Функция для синуса
+vector<double> sin_wave(double A, double f, const vector<double>& t) {
+    vector<double> result;
+    for (double time : t) result.push_back(A * sin(2 * PI * f * time));
+    return result;
 }
 
-/* i just loved making it like that i dont care */
-void Task01() {
-    // enter your data here
-    double A = 3.3;  // amplitude
-    double f = 10000;  // freq
-    int num_points = 100;  // points num lol
-    double fs = 50 * f;  // частота дискретизации
+// Функция для меандра
+vector<double> square_wave(double A, double f, const vector<double>& t) {
+    vector<double> result(t.size(), 0.0);
+    for (int k = 1; k <= harmonics; ++k)
+        for (size_t i = 0; i < t.size(); ++i)
+            result[i] += (4 * A / PI) * sin((2 * k - 1) * 2 * PI * f * t[i]) / (2 * k - 1);
+    return result;
+}
 
-    // cout just to make sure you are using the correct data
-    cout << "Генерация " << num_points << " точек сигнала с амплитудой " << A << " В и частотой " << f << " Гц" << endl;
-
-    // генерация 100 точек сигнала для каждого типа сигнала
-    for (int signalType = 1; signalType <= 3; ++signalType) {
-        cout << "Сигнал " << signalType << ":" << endl;
-
-        // вычисление значений сигнала в 100 точках
-        for (int i = 0; i < num_points; ++i) {
-            double t = i / fs;  // время для каждой точки
-            double value = calculateSignal(signalType, A, f, t);
-            cout << "t = " << t << ", x(t) = " << value << endl;
-        }
-        cout << endl;
-    }
+// Функция для пилы
+vector<double> sawtooth_wave(double A, double f, const vector<double>& t) {
+    vector<double> result(t.size(), 0.0);
+    for (int k = 1; k <= harmonics; ++k)
+        for (size_t i = 0; i < t.size(); ++i)
+            result[i] += (2 * A / PI) * pow(-1, k + 1) * sin(2 * PI * f * k * t[i]) / k;
+    return result;
 }
 
 int main() {
     setlocale(LC_ALL, "ru.UTF-8");
-    int TaskNumber;    
-    cout << "Введите номер задачи: " << endl;
-    cin >> TaskNumber;
+    vector<double> t(num_points);  // Массив времени
+    for (int i = 0; i < num_points; ++i) t[i] = i * T / num_points;
 
-    switch (TaskNumber) {
-        case 1: 
-            Task01(); 
-            break;
-        default:
-            cerr << "Неверный номер задачи." << endl;
-    }
+    // Генерация сигналов
+    auto sin_values = sin_wave(A, f, t);
+    auto square_values = square_wave(A, f, t);
+    auto sawtooth_values = sawtooth_wave(A, f, t);
+
+    // Вывод значений
+    cout << fixed << setprecision(6); // Установка шестизначной точности для вывода
+    for (int i = 0; i < num_points; ++i)
+        cout << "t = " << t[i] << " | Синус = " << sin_values[i] << " | Меандр = " << square_values[i]
+        << " | Пила = " << sawtooth_values[i] << endl;
 
     return 0;
 }
 
-//
 //      _                 _                   _   
 //     | |               (_)                 | |  
 //   __| | ___  _ __ ___  _ _ __   __ _ _ __ | |_ 
