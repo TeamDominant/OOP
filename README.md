@@ -1,5 +1,5 @@
 <div><p align="center">
-  <img alt="prettyleaf" src="https://repobeats.axiom.co/api/embed/6476b53eac0717c658dd3fd2680ace74d19c2530.svg">
+  <img alt="OOP repo stats" src="https://repobeats.axiom.co/api/embed/6476b53eac0717c658dd3fd2680ace74d19c2530.svg">
 </p></div>
 
 ### Software used:
