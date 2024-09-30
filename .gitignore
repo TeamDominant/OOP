@@ -7,3 +7,9 @@ task1/task1.exe
 .vscode/tasks.json
 .vscode/settings.json
 .vscode
+/task4_v2/.vs
+task4_v2/task4_v2/task4_v2.vcxproj
+task4_v2/task4_v2/task4_v2.vcxproj.filters
+task4_v2/task4_v2/task4_v2.vcxproj.user
+/task4_v2/task4_v2/task4_v2/x64
+task4_v2/task4_v2/x64/Debug/task4_v2.pdb
