@@ -1,42 +1,70 @@
-#include <iostream>
 #include "class.h"
-#include <string>
+#include <iostream>
 
 using namespace std;
 
-void Employee::set_name(const string& e_name) {
-    Employee::name = e_name;
+// Реализация конструктора Employee
+Employee::Employee() : salary(nullptr), salary_size(0), average_salary(0.0) {}
+
+// Реализация деструктора Employee
+Employee::~Employee() {
+    delete[] salary; // Освобождаем память, выделенную для массива зарплат
 }
 
-string Employee::get_name() const {
-    return Employee::name;
+// Методы для Employee
+void Employee::set_name(string e_name) {
+    name = e_name;
 }
 
-void Employee::set_last_name(const string& e_last_name) {
-    Employee::last_name = e_last_name;
+string Employee::get_name() {
+    return name;
 }
 
-string Employee::get_last_name() const {
-    return Employee::last_name;
+void Employee::set_last_name(string e_last_name) {
+    last_name = e_last_name;
 }
 
-void Employee::set_salary(const int e_salary[5]) {
-    float Employee::sum = 0;
-    for (int i = 0; i < 5; i++) {
-        Employee::sum += e_salary[i];
-        Employee::salary[i] = e_salary[i];
+string Employee::get_last_name() {
+    return last_name;
+}
+
+void Employee::set_salary(int* e_salary, int size) {
+    if (salary != nullptr) {
+        delete[] salary; // Освобождаем ранее выделенную память
     }
-    Employee::average_salary = sum / 5.0;
+    salary_size = size;
+    salary = new int[salary_size]; // Динамическое выделение памяти
+    float sum = 0;
+    for (int i = 0; i < salary_size; i++) {
+        salary[i] = e_salary[i];
+        sum += e_salary[i];
+    }
+    average_salary = sum / salary_size; // Средняя зарплата
 }
 
-float Employee::get_average_salary() const {
-    return Employee::average_salary;
+float Employee::get_average_salary() {
+    return average_salary;
 }
 
-void Admin::set_department(const string& dept) {
-    Employee::department = dept;
+// Реализация конструктора SysAdmin
+SysAdmin::SysAdmin() : num_servers(0) {}
+
+// Реализация деструктора SysAdmin
+SysAdmin::~SysAdmin() {}
+
+// Методы для SysAdmin
+void SysAdmin::set_num_servers(int num) {
+    num_servers = num;
 }
 
-string Admin::get_department() const {
-    return Employee::department;
+int SysAdmin::get_num_servers() {
+    return num_servers;
+}
+
+void SysAdmin::add_technology(const string& tech) {
+    technologies.push_back(tech);
+}
+
+vector<string> SysAdmin::get_technologies() {
+    return technologies;
 }

@@ -1,34 +1,42 @@
-﻿#include <iostream>
-#include "class.h"
-#include <string>
+﻿#include "class.h"
+#include <iostream>
+
 using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "ru.UTF-8");
 
-    // Создание объекта класса Employee
+    /* объект 1 */
     Employee employee;
-    employee.set_name("Петр");
-    employee.set_last_name("Петров");
+    employee.set_name("Иван");
+    employee.set_last_name("Колесников"); // я не мог
 
     int salary[] = { 40000, 30000, 50000, 10000, 35000 };
-    employee.set_salary(salary);
+    employee.set_salary(salary, 5);
 
-    cout << "Name: " << employee.get_name() << endl;
-    cout << "Last name: " << employee.get_last_name() << endl;
+    cout << "Имя: " << employee.get_name() << endl;
+    cout << "Фамилия: " << employee.get_last_name() << endl;
     cout << "Средняя зарплата: " << employee.get_average_salary() << " рублей" << endl;
 
-    // Создание объекта класса Admin
-    Admin admin;
-    admin.set_name("Вадим");
-    admin.set_last_name("Абдуллаев");
-    admin.set_salary(salary);
-    admin.set_department("Отдел кибер-спорта");
+    /* объект SysAdmin + наследуем Employee */
+    SysAdmin sysAdmin;
+    sysAdmin.set_name("Павел");
+    sysAdmin.set_last_name("Pashachoo"); // я не знаю фамилию друга :)
+    sysAdmin.set_salary(salary, 5);
+    sysAdmin.set_num_servers(2);
+    sysAdmin.add_technology("Portainer");   // мои два
+    sysAdmin.add_technology("Docker");  // любимца
 
-    cout << "Admin's Name: " << admin.get_name() << endl;
-    cout << "Admin's Last name: " << admin.get_last_name() << endl;
-    cout << "Average Admin Salary: " << admin.get_average_salary() << " рублей" << endl;
-    cout << "Department: " << admin.get_department() << endl;
+    cout << "Имя системного администратора: " << sysAdmin.get_name() << endl;
+    cout << "Фамилия системного администратора: " << sysAdmin.get_last_name() << endl;
+    cout << "Средняя зарплата системного администратора: " << sysAdmin.get_average_salary() << " рублей" << endl;
+    cout << "Количество серверов: " << sysAdmin.get_num_servers() << endl;
+
+    cout << "Технологии, используемые системным администратором: ";
+    for (const auto& tech : sysAdmin.get_technologies()) {
+        cout << tech << " ";
+    }
+    cout << endl;
 
     return 0;
 }
