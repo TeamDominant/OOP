@@ -1,9 +1,9 @@
-#ifndef CLASS_H
-#define CLASS_H
-
-#include <string>
+#pragma once
 #include <iostream>
+#include <string>
+
 using namespace std;
+
 class Employee {
 public:
     void set_name(const string& e_name);
@@ -30,5 +30,3 @@ public:
 private:
     string department;
 };
-
-#endif 
