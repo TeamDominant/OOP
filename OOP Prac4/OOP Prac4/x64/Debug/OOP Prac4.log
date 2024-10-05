@@ -1,0 +1,5 @@
+﻿  class.cpp
+C:\Users\Ed\Downloads\class.cpp(35,26): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  main.cpp
+  Создание кода...
+  OOP Prac4.vcxproj -> D:\Разное\Практика\ООП\OOP Prac4\x64\Debug\OOP Prac4.exe
