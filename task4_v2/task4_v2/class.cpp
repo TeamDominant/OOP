@@ -132,10 +132,11 @@ float Trapezoid::calculate_perimeter() {
 
 // высота
 float Trapezoid::calculate_height() {
-    // Используем формулу высоты через площадь и основания
-    float s = (side1 + side2 + base1 - base2) / 2;
-    float height = 2 * sqrt(s * (s - side1) * (s - side2) * (s - base1 + base2)) / (base1 - base2);
-    return height;
+    if (base1 == base2) {
+        cout << "Высота не может быть посчитана. Данных некорректны. Ошибка: string 135" << endl;  // не трапеция, если основания равны
+    }
+    float diff = (base1 - base2) / 2;
+    return sqrt(side1 * side1 - diff * diff);
 }
 
 // площадь
@@ -145,6 +146,8 @@ float Trapezoid::calculate_area() {
 }
 
 // угол
-float Trapezoid::calculate_angle(float a, float b, float opposite) {
-    return acos((a * a + b * b - opposite * opposite) / (2 * a * b)) * 180.0 / M_PI;
+float Trapezoid::calculate_angle(float base, float side) {
+    // Угол между основанием и боковой стороной
+    float diff = (base1 - base2) / 2;
+    return atan(diff / side) * 180.0 / M_PI;  // Используем арктангенс для расчёта угла
 }

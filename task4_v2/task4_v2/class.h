@@ -69,7 +69,7 @@ public:
     float calculate_perimeter(); // говорит само за себя
     float calculate_height(); // высота
     float calculate_area(); // площадь
-    float calculate_angle(float a, float b, float opposite); // угол
+    float calculate_angle(float base, float side);
 
 private:
     float base1; // основа

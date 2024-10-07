@@ -46,12 +46,11 @@ int main() {
     /*------------------------*/
     /* START: Class Trapezoid */
     /*------------------------*/
-    Trapezoid trapezoid(5, 7, 4, 4.5); // задаём 4 стороны
+    Trapezoid trapezoid(10.0, 6.0, 5.0, 5.0); // задаём 4 стороны
     cout << "Периметр: " << trapezoid.calculate_perimeter() << endl;
     cout << "Высота: " << trapezoid.calculate_height() << endl;
     cout << "Площадь: " << trapezoid.calculate_area() << endl;
 
-    cout << "Угол между боковой стороной и основанием: " << trapezoid.calculate_angle(trapezoid.get_base1(), trapezoid.get_side1(), trapezoid.get_side2()) << " градусов" << endl;
-    
+    cout << "Угол между боковой стороной и основанием: " << trapezoid.calculate_angle(trapezoid.get_base1(), trapezoid.get_side1()) << " градусов" << endl;
     return 0;
 }
