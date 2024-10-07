@@ -3,6 +3,6 @@
 </p></div>
 
 ### Software used:
-- `vscode:latest` with c++ extensions (stable release) and `VS Build Tools 2022`
+- `vscode:latest` with ssh and c++ extensions hosted on Linux, so I can build by using `g++` or `gcc`
 
 [![](https://visitcount.itsvg.in/api?id=teamdominant&icon=0&color=1)](https://visitcount.itsvg.in)
