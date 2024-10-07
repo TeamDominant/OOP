@@ -1,5 +1,2 @@
-﻿  class.cpp
-C:\Users\Ed\Documents\GitHub\OOP\Prac4\class.cpp(35,26): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-  main.cpp
-  Создание кода...
+﻿  main.cpp
   Prac4.vcxproj -> C:\Users\Ed\Documents\GitHub\OOP\Prac4\x64\Debug\Prac4.exe
