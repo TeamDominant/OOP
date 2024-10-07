@@ -3,6 +3,7 @@
 .vscode
 /task4_v2/.vs
 /task4_v2/task4_v2/task4_v2/x64
+/task4_v2/task4_v2/task4_v2
 *.obj
 *.pdb
 *.exe
