@@ -20,8 +20,8 @@ int main() {
 
     /* объект SysAdmin + наследуем Employee */
     SysAdmin sysAdmin;
-    sysAdmin.set_name("Павел");
-    sysAdmin.set_last_name("Pashachoo"); // я не знаю фамилию друга :)
+    sysAdmin.set_name("Pasha");
+    sysAdmin.set_last_name("Choo");
     sysAdmin.set_salary(salary, 5);
     sysAdmin.set_num_servers(2);
     sysAdmin.add_technology("Portainer");   // мои два

@@ -1,36 +1,42 @@
-﻿#include <iostream>
-#include "class.h"
+﻿#include "class.h"
+#include <iostream>
 
 using namespace std;
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "ru.UTF-8");
 
-    // Работа с классом Employee
-    Employee *employee = new Employee;
-    employee->set_name("Петр");
-    employee->set_last_name("Петров");
+    /* объект 1 */
+    Employee employee;
+    employee.set_name("Иван");
+    employee.set_last_name("Колесников"); // я не мог
+
     int salary[] = { 40000, 30000, 50000, 10000, 35000 };
-    employee->set_salary(salary);
+    employee.set_salary(salary, 5);
 
-    cout << "Имя: " << employee->get_name() << endl;
-    cout << "Фамилия: " << employee->get_last_name() << endl;
-    cout << "Средняя зарплата: " << employee->get_average_salary() << " рублей" << endl;
+    cout << "Имя: " << employee.get_name() << endl;
+    cout << "Фамилия: " << employee.get_last_name() << endl;
+    cout << "Средняя зарплата: " << employee.get_average_salary() << " рублей" << endl;
 
-    // Работа с классом Manager (наследник Employee)
-    Manager *manager = new Manager;
-    manager->set_name("Алексей");
-    manager->set_last_name("Смирнов");
-    manager->set_salary(salary);
-    manager->set_department("Отдел продаж");
+    /* объект SysAdmin + наследуем Employee */
+    SysAdmin sysAdmin;
+    sysAdmin.set_name("Pasha");
+    sysAdmin.set_last_name("Choo");
+    sysAdmin.set_salary(salary, 5);
+    sysAdmin.set_num_servers(2);
+    sysAdmin.add_technology("Portainer");   // мои два
+    sysAdmin.add_technology("Docker");  // любимца
 
-    cout << "Имя менеджера: " << manager->get_name() << endl;
-    cout << "Фамилия менеджера: " << manager->get_last_name() << endl;
-    cout << "Средняя зарплата менеджера: " << manager->get_average_salary() << " рублей" << endl;
-    cout << "Отдел: " << manager->get_department() << endl;
+    cout << "Имя системного администратора: " << sysAdmin.get_name() << endl;
+    cout << "Фамилия системного администратора: " << sysAdmin.get_last_name() << endl;
+    cout << "Средняя зарплата системного администратора: " << sysAdmin.get_average_salary() << " рублей" << endl;
+    cout << "Количество серверов: " << sysAdmin.get_num_servers() << endl;
 
-    delete employee;
-    delete manager;
-    system("pause");
+    cout << "Технологии, используемые системным администратором: ";
+    for (const auto& tech : sysAdmin.get_technologies()) {
+        cout << tech << " ";
+    }
+    cout << endl;
+
     return 0;
 }

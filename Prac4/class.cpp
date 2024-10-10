@@ -1,51 +1,70 @@
 #include "class.h"
-#include <numeric>
 #include <iostream>
 
 using namespace std;
 
-Employee::Employee() : average_salary(0) {
-    for (int& sal : salary) {
-        sal = 0;
-    }
+// Реализация конструктора Employee
+Employee::Employee() : salary(nullptr), salary_size(0), average_salary(0.0) {}
+
+// Реализация деструктора Employee
+Employee::~Employee() {
+    delete[] salary; // Освобождаем память, выделенную для массива зарплат
 }
 
-void Employee::set_name(const string& e_name) {
+// Методы для Employee
+void Employee::set_name(string e_name) {
     name = e_name;
 }
 
-string Employee::get_name() const {
+string Employee::get_name() {
     return name;
 }
 
-void Employee::set_last_name(const string& e_last_name) {
+void Employee::set_last_name(string e_last_name) {
     last_name = e_last_name;
 }
 
-string Employee::get_last_name() const {
+string Employee::get_last_name() {
     return last_name;
 }
 
-void Employee::set_salary(const int e_salary[5]) {
+void Employee::set_salary(int* e_salary, int size) {
+    if (salary != nullptr) {
+        delete[] salary; // Освобождаем ранее выделенную память
+    }
+    salary_size = size;
+    salary = new int[salary_size]; // Динамическое выделение памяти
     float sum = 0;
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < salary_size; i++) {
         salary[i] = e_salary[i];
         sum += e_salary[i];
     }
-    average_salary = sum / 5.0;
+    average_salary = sum / salary_size; // Средняя зарплата
 }
 
-float Employee::get_average_salary() const {
+float Employee::get_average_salary() {
     return average_salary;
 }
 
-// Реализация методов класса Manager
-Manager::Manager() : department("") {}
+// Реализация конструктора SysAdmin
+SysAdmin::SysAdmin() : num_servers(0) {}
 
-void Manager::set_department(const string& e_department) {
-    department = e_department;
+// Реализация деструктора SysAdmin
+SysAdmin::~SysAdmin() {}
+
+// Методы для SysAdmin
+void SysAdmin::set_num_servers(int num) {
+    num_servers = num;
 }
 
-string Manager::get_department() const {
-    return department;
+int SysAdmin::get_num_servers() {
+    return num_servers;
+}
+
+void SysAdmin::add_technology(const string& tech) {
+    technologies.push_back(tech);
+}
+
+vector<string> SysAdmin::get_technologies() {
+    return technologies;
 }
