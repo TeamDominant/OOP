@@ -6,7 +6,10 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "ru.UTF-8");
 
-    /* объект 1 */
+    /*-----------------------*/
+    /* START: Class Employee */
+    /*-----------------------*/
+
     Employee employee;
     employee.set_name("Иван");
     employee.set_last_name("Колесников"); // я не мог
@@ -18,7 +21,9 @@ int main() {
     cout << "Фамилия: " << employee.get_last_name() << endl;
     cout << "Средняя зарплата: " << employee.get_average_salary() << " рублей" << endl;
 
-    /* объект SysAdmin + наследуем Employee */
+    /*-----------------------*/
+    /* START: Class SysAdmin */
+    /*-----------------------*/
     SysAdmin sysAdmin;
     sysAdmin.set_name("Pasha");
     sysAdmin.set_last_name("Choo");
@@ -38,5 +43,14 @@ int main() {
     }
     cout << endl;
 
+    /*------------------------*/
+    /* START: Class Trapezoid */
+    /*------------------------*/
+    Trapezoid trapezoid(10.0, 6.0, 5.0, 5.0); // задаём 4 стороны
+    cout << "Периметр: " << trapezoid.calculate_perimeter() << endl;
+    cout << "Высота: " << trapezoid.calculate_height() << endl;
+    cout << "Площадь: " << trapezoid.calculate_area() << endl;
+
+    cout << "Угол между боковой стороной и основанием: " << trapezoid.calculate_angle(trapezoid.get_base1(), trapezoid.get_side1()) << " градусов" << endl;
     return 0;
 }
