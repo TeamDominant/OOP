@@ -151,3 +151,41 @@ float Trapezoid::calculate_angle(float base, float side) {
     float diff = (base1 - base2) / 2;
     return atan(diff / side) * 180.0 / M_PI;  // Используем арктангенс для расчёта угла
 }
+
+/*----------------------------*/
+/*   START: Class Triangle    */
+/*----------------------------*/
+
+Triangle::Triangle() : side(0), height(0) {}
+
+Triangle::Triangle(float s, float h) : side(s), height(h) {}
+
+Triangle::~Triangle() {}
+
+void Triangle::set_side(float s) {
+    side = s;
+}
+
+void Triangle::set_height(float h) {
+    height = h;
+}
+
+bool Triangle::is_valid_triangle() {
+    if (side <= 0 || height <= 0) {
+        cout << "Некорректные значения: стороны и высота должны быть положительными." << endl;
+        return false;
+    }
+
+    float base = 2 * sqrt(side * side - (height * height));
+
+    if (side >= base + side || base >= 2 * side) {
+        cout << "Треугольник с такими сторонами не существует." << endl;
+        return false;
+    }
+
+    return true;
+}
+
+float Triangle::calculate_area() {
+    return 0.5 * side * height;
+}

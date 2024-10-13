@@ -47,6 +47,7 @@ private:
 };
 
 // расчет трапеции
+//! НУЖНО ПЕРЕПИСАТЬ ФОРМУЛЫ
 class Trapezoid {
 public:
     Trapezoid();
@@ -76,6 +77,25 @@ private:
     float base2; // вторая основа
     float side1; // боковая сторона
     float side2; // вторая боковая
+};
+
+/*----------------------------*/
+/*   START: Class Triangle    */
+/*----------------------------*/
+class Triangle {
+public:
+    Triangle();
+    Triangle(float side, float height);
+    ~Triangle();
+
+    void set_side(float side);
+    void set_height(float height);
+    float calculate_area();
+    bool is_valid_triangle();
+
+private:
+    float side;
+    float height;
 };
 
 #endif // CLASS_H
