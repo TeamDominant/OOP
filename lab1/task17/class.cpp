@@ -40,7 +40,7 @@ Money Money::operator-(const Money& other) const {
     int total1 = rubles * 100 + kopecks;
     int total2 = other.rubles * 100 + other.kopecks;
     if (total1 < total2) {
-        cout << "Error: Resulting money cannot be negative" << endl;
+        cout << "[ERROR] Результат отрицательный" << endl;
         return Money(0, 0); // Возврат нулевой суммы в случае ошибки
     }
     int result_total = total1 - total2;
@@ -57,7 +57,7 @@ Money Money::operator*(double multiplier) const {
 // деление на число
 Money Money::operator/(double divisor) const {
     if (divisor == 0) {
-        cout << "Error: Division by zero" << endl;
+        cout << "[ERROR] Деление на ноль" << endl;
         return Money(0, 0); // Возврат нулевой суммы в случае ошибки
     }
     int total = rubles * 100 + kopecks;
@@ -70,7 +70,7 @@ double Money::operator/(const Money& other) const {
     int total1 = rubles * 100 + kopecks;
     int total2 = other.rubles * 100 + other.kopecks;
     if (total2 == 0) {
-        cout << "Error: Division by zero" << endl;
+        cout << "[ERROR] Деление на ноль" << endl;
         return 0.0; // Возврат нуля в случае ошибки
     }
     return static_cast<double>(total1) / total2;
@@ -78,15 +78,15 @@ double Money::operator/(const Money& other) const {
 
 // output
 ostream& operator<<(ostream& os, const Money& money) {
-    os << money.rubles << " rubles and " << money.kopecks << " kopecks";
+    os << money.rubles << " рублей и " << money.kopecks << " копеек";
     return os;
 }
 
 // input (ne input lag)
 istream& operator>>(istream& is, Money& money) {
-    cout << "Enter rubles: ";
+    cout << "Введите рубли: ";
     is >> money.rubles;
-    cout << "Enter kopecks: ";
+    cout << "Введите копейки: ";
     is >> money.kopecks;
     money.normalize(); // Нормализация после ввода
     return is;
