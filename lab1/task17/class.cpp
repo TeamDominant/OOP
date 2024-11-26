@@ -71,4 +71,13 @@ double Money::operator/(const Money& other) const {
     int total2 = other.rubles * 100 + other.kopecks;
     if (total2 == 0) {
         cout << "Error: Division by zero" << endl;
-        return 0.0;
+        return 0.0; // Возврат нуля в случае ошибки
+    }
+    return static_cast<double>(total1) / total2;
+}
+
+// Вывод денежных сумм
+ostream& operator<<(ostream& os, const Money& money) {
+    os << money.rubles << " rubles and " << money.kopecks << " kopecks";
+    return os;
+}
