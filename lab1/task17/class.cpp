@@ -30,12 +30,12 @@ int Money::getKopecks() const {
     return kopecks;
 }
 
-// Оператор сложения
+// сложение
 Money Money::operator+(const Money& other) const {
     return Money(rubles + other.rubles, kopecks + other.kopecks);
 }
 
-// Оператор вычитания
+// вычитание
 Money Money::operator-(const Money& other) const {
     int total1 = rubles * 100 + kopecks;
     int total2 = other.rubles * 100 + other.kopecks;
@@ -47,14 +47,14 @@ Money Money::operator-(const Money& other) const {
     return Money(result_total / 100, result_total % 100);
 }
 
-// Оператор умножения на число
+// умножение
 Money Money::operator*(double multiplier) const {
     int total = rubles * 100 + kopecks;
     int result_total = static_cast<int>(round(total * multiplier));
     return Money(result_total / 100, result_total % 100);
 }
 
-// Оператор деления на число
+// деление на число
 Money Money::operator/(double divisor) const {
     if (divisor == 0) {
         cout << "Error: Division by zero" << endl;
@@ -65,7 +65,7 @@ Money Money::operator/(double divisor) const {
     return Money(result_total / 100, result_total % 100);
 }
 
-// Оператор деления двух сумм
+// деление двух сумм
 double Money::operator/(const Money& other) const {
     int total1 = rubles * 100 + kopecks;
     int total2 = other.rubles * 100 + other.kopecks;
@@ -76,8 +76,18 @@ double Money::operator/(const Money& other) const {
     return static_cast<double>(total1) / total2;
 }
 
-// Вывод денежных сумм
+// output
 ostream& operator<<(ostream& os, const Money& money) {
     os << money.rubles << " rubles and " << money.kopecks << " kopecks";
     return os;
+}
+
+// input (ne input lag)
+istream& operator>>(istream& is, Money& money) {
+    cout << "Enter rubles: ";
+    is >> money.rubles;
+    cout << "Enter kopecks: ";
+    is >> money.kopecks;
+    money.normalize(); // Нормализация после ввода
+    return is;
 }
