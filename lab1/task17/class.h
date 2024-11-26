@@ -11,21 +11,22 @@ private:
     int rubles;
     int kopecks;
 
-    void normalize(); // Приватный метод нормализации
+    void normalize(); // используем приватный метод нормализации
 
 public:
-    Money(int rub = 0, int kop = 0); // Конструктор
+    Money(int rub = 0, int kop = 0); // конструктор
 
-    int getRubles() const; // Геттер для рублей
-    int getKopecks() const; // Геттер для копеек
+    int getRubles() const; // геттер для рублей
+    int getKopecks() const; // геттер для копеек
 
-    Money operator+(const Money& other) const; // Оператор сложения
-    Money operator-(const Money& other) const; // Оператор вычитания
-    Money operator*(double multiplier) const;  // Оператор умножения
-    Money operator/(double divisor) const;     // Оператор деления на число
-    double operator/(const Money& other) const; // Оператор деления двух сумм
+    Money operator+(const Money& other) const; // сложение
+    Money operator-(const Money& other) const; // вычитание
+    Money operator*(double multiplier) const;  // умножение
+    Money operator/(double divisor) const;     // деление на число
+    double operator/(const Money& other) const; // деление двух сумм
 
-    friend ostream& operator<<(ostream& os, const Money& money); // Вывод
+    friend ostream& operator<<(ostream& os, const Money& money); // output
+    friend istream& operator>>(istream& is, Money& money);       // input
 };
 
 #endif // CLASS_H
