@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-#include "class.h"
-#include <iostream>
-
-=======
 #include <iostream>
 #include "class.h"
->>>>>>> b8ecab86dfe238ebad504ce11790db3e0805a21c
 using namespace std;
 
 int main() {

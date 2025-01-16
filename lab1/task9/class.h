@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-#ifndef CLASS_H
-#define CLASS_H
-
-#include <iostream>
-#include <string>
-#include <vector>
-
-using namespace std;
-
-/*----------------------------*/
-/*  START: Class Calculator   */
-/*----------------------------*/
-class ResistanceCalculator {
-public:
-    ResistanceCalculator();
-    ResistanceCalculator(float, float);
-    ~ResistanceCalculator();
-private:
-    float side;
-    float height;
-};
-
-#endif // CLASS_H
-=======
 #ifndef RESISTANCE_CALCULATOR_H
 #define RESISTANCE_CALCULATOR_H
 
@@ -43,4 +18,3 @@ public:
 };
 
 #endif
->>>>>>> b8ecab86dfe238ebad504ce11790db3e0805a21c
