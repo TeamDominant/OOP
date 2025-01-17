@@ -1,17 +1,17 @@
 #include "class.h"
 
-Account::Account(const std::string& data, const std::string& password)
+Account::Account(const string& data, const string& password)
     : data(data), isLoggedIn(false) {
     setPassword(password);
 }
 
 // Закрытый метод установки пароля
-void Account::setPassword(const std::string& pass) {
+void Account::setPassword(const string& pass) {
     password = pass;
 }
 
 // Метод входа
-bool Account::login(const std::string& pass) {
+bool Account::login(const string& pass) {
     if (pass == password) {
         isLoggedIn = true;
         return true;
@@ -25,7 +25,7 @@ void Account::logout() {
 }
 
 // Метод чтения данных
-std::string Account::readData() const {
+string Account::readData() const {
     if (isLoggedIn) {
         return data;
     }
@@ -33,7 +33,7 @@ std::string Account::readData() const {
 }
 
 // Метод записи данных
-void Account::writeData(const std::string& newData) {
+void Account::writeData(const string& newData) {
     if (isLoggedIn) {
         data = newData;
     }
