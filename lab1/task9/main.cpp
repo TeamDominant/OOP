@@ -4,17 +4,6 @@ using namespace std;
 
 int main() {
     setlocale(LC_ALL, "ru.UTF-8");
-<<<<<<< HEAD
-
-    /*----------------------------*/
-    /*  START: Class Calculator   */
-    /*----------------------------*/
-
-    ResistanceCalculator calc();
-    
-    return 0;
-}
-=======
     try {
         double r1, r2;
         string connection_type;
@@ -36,4 +25,3 @@ int main() {
 
     return 0;
 }
->>>>>>> b8ecab86dfe238ebad504ce11790db3e0805a21c
