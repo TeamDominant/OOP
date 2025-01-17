@@ -1,33 +1,25 @@
 #ifndef CLASS_H
 #define CLASS_H
 
+#include <cmath>
+
 class Vector {
 protected:
-    double x1, y1, x2, y2;  // Координаты начала и конца вектора
+    double x1, y1, x2, y2;
 
 public:
-    // Конструктор
-    Vector(double x1, double y1, double x2, double y2);
+    Vector(double startX, double startY, double endX, double endY);
 
-    // Метод для вычисления длины вектора
-    double calculateLength() const;
-
-    // Геттеры для координат
-    double getX1() const;
-    double getY1() const;
-    double getX2() const;
-    double getY2() const;
+    double length() const;
 };
 
 class TwoVectors : public Vector {
 private:
-    double x1_2, y1_2, x2_2, y2_2;  // Координаты второго вектора (смещенного)
+    double a, b; // смещение второго вектора
 
 public:
-    // Конструктор
-    TwoVectors(double x1, double y1, double x2, double y2, double a, double b);
+    TwoVectors(double startX, double startY, double endX, double endY, double shiftA, double shiftB);
 
-    // Метод для вычисления площади параллелограмма
     double calculateArea() const;
 };
 
